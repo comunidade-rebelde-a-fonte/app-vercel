@@ -29,3 +29,11 @@ pnpm-debug.log*
 
 # Vercel local project configuration
 .vercel/
+
+# Local editor/agent setup and unused Astro starter files
+/.vscode/
+/AGENTS.md
+/src/assets/
+/src/components/Welcome.astro
+/src/layouts/Layout.astro
+/public/favicon.ico

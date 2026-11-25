@@ -32,3 +32,9 @@ Publique a pasta `dist/`. Na Vercel, selecione o preset Astro, build `npm run bu
 As imagens e fontes são servidas localmente. As imagens da aula foram convertidas para WebP; os arquivos de referência originais permanecem nas pastas fornecidas.
 
 Oferta conferida no carrinho em 25/11/2026: de R$ 3.600,00 por R$ 2.700,00 ou 12x de R$ 225,00 sem juros; 12 meses de acesso, garantia de 7 dias e prazo até 30/11/2026 às 23h59 (Brasília). Revise esses textos quando a campanha terminar.
+
+## GitHub Pages
+
+The GitHub Actions workflow publishes every push to main after Pages is enabled with GitHub Actions as the source. It sets GITHUB_PAGES=true to use the /app-vercel base path. Regular builds keep the root path for Vercel.
+
+Expected public address: https://comunidade-rebelde-a-fonte.github.io/app-vercel/

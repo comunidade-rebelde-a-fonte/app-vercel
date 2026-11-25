@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local source materials and captured reference site
+/Aula Quarta/
+/Referencia/
+
+# Vercel local project configuration
+.vercel/

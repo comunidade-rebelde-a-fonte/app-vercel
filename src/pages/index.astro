@@ -1,11 +1,120 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css';
+import prompts from '../data/prompts.json';
+import courses from '../data/courses.json';
+import Icon from '../components/Icon.astro';
+const checkout = 'https://comunidade.ceath.io/o/black-friday-a-fonte';
+const live = 'https://www.youtube.com/watch?v=hNS_xCP6OCU';
+const resources = [
+  { title: 'Seu próprio teleprompter', description: 'Do roteiro à leitura em tela cheia. Um app com rolagem, modo espelho e câmera opcional.', icon: 'play', source: 'https://canivibecodeit.com/teleprompter-com', note: 'Adaptação em português do prompt do Teleprompter.com.' },
+  { title: 'Seu manipulador de PDF', description: 'Junte, divida, reorganize e gire páginas. Uma ferramenta que funciona no navegador.', icon: 'file', source: 'https://canivibecodeit.com/ilovepdf-premium', note: 'Adaptação com escopo reduzido do iLovePDF Premium.' },
+];
+const faqs = [
+  ['A aula e os materiais são gratuitos?', 'Sim. A aula da Quarta Rebelde, os dois prompts e a apresentação desta página têm acesso livre. A assinatura da Comunidade A Fonte é uma oferta separada e opcional.'],
+  ['Preciso saber programar para acompanhar?', 'Você pode assistir às demonstrações e entender o processo. Para executar os prompts no seu computador, prepare o Claude Code, Node.js e npm. Acesso e eventuais custos das ferramentas são separados da aula.'],
+  ['Os prompts são os mesmos do site original?', 'São adaptações em português dos prompts públicos do canivibecodeit.com. O teleprompter foi adaptado para a aula. O manipulador de PDF tem escopo reduzido: juntar, dividir, reorganizar e girar páginas, funcionando no navegador. Os links das referências estão junto de cada prompt.'],
+  ['Por quanto tempo tenho acesso à comunidade?', 'A oferta de Black Friday inclui 12 meses de acesso a partir da confirmação do pagamento. Você tem 7 dias de garantia a partir da compra, com devolução integral caso solicite cancelamento nesse prazo.'],
+  ['Como recebo meu acesso após a compra?', 'O acesso fica na conta do e-mail informado na compra, após a confirmação do pagamento. No primeiro acesso, você recebe por e-mail o link para criar sua senha. As condições completas estão no carrinho oficial.'],
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Quarta Rebelde · Claude e Claude Code na prática | A Fonte</title>
+  <meta name="description" content="Da conversa à execução: aula gratuita de Claude e Claude Code com a Equipe A Fonte. Acesse os slides, copie os prompts e conheça a Black Friday da comunidade." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Quarta Rebelde · Claude e Claude Code na prática" />
+  <meta property="og:description" content="A aula é o começo. Copie os prompts, explore os slides e leve a IA para o seu trabalho." />
+  <meta property="og:image" content="/material/imagens/slide-12.webp" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/oswald-700.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="/fonts/inter-500.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="campaign-bar"><span>BLACK FRIDAY A FONTE</span><span class="campaign-divider">/</span><span class="campaign-message">25% OFF PARA IR ALÉM DA AULA</span><a href="#black-friday">Conheça a oferta <Icon name="spark" /></a></div>
+  <header class="header wrap">
+    <a class="brand" href="#" aria-label="A Fonte, início"><img src="/images/logo-afonte.webp" alt="A Fonte" width="54" height="54" /><span>A FONTE<span class="brand-caption">PESSOAS + IA + RESULTADOS</span></span></a>
+    <nav aria-label="Navegação principal"><a href="#aula">A aula</a><a href="#materiais">Materiais gratuitos</a><a class="nav-offer" href="#black-friday">Black Friday <Icon name="spark" /></a></nav>
+  </header>
+  <main id="conteudo">
+    <section class="hero wrap">
+      <div class="hero-topline"><span class="eyebrow"><span class="short-line"></span> QUARTA REBELDE</span><span class="edition">EDIÇÃO 25 NOV · 2026</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="event-label"><Icon name="calendar" /> AULA GRATUITA · 25/11 · 9H ÀS 11H</div>
+          <h1>SUA IA SÓ<br />RESPONDE?<br /><span>FAÇA ELA<br />TRABALHAR.</span></h1>
+          <p class="hero-subtitle">Claude e Claude Code na prática.</p>
+          <p class="hero-description">Menos improviso. Mais contexto. Aprenda a transformar documentos, ideias e tarefas em entregas reais com a Equipe A Fonte.</p>
+          <div class="hero-actions"><a class="button primary" href={live} target="_blank" rel="noopener noreferrer"><Icon name="play" /> Assistir à aula gratuita</a><a class="text-link" href="#materiais">Explorar os materiais <Icon name="down" /></a></div>
+          <div class="hero-footnote"><Icon name="check" /> Aula aberta <span>·</span> Prompts para copiar <span>·</span> Aplicação real</div>
+        </div>
+        <div class="hero-art">
+          <img class="desk-image" src="/material/imagens/slide-12.webp" alt="Notebook e documentos conectados por um fio de luz laranja sobre uma mesa de trabalho" width="1600" height="900" fetchpriority="high" />
+          <div class="art-top"><span class="mini-mark">A FONTE / LAB</span><span class="art-cross">+</span></div>
+          <div class="art-title">DA CONVERSA<br /><span>À EXECUÇÃO.</span></div>
+          <div class="floating-label context"><Icon name="file" /><div>contexto<span>documentos + instruções</span></div></div>
+          <div class="floating-label execution"><Icon name="code" /><div>execução<span>arquivos + ferramentas</span></div><span class="label-check">✓</span></div>
+          <div class="art-bottom"><span>VOCÊ DECIDE. A IA EXECUTA.</span><span>↳</span></div>
+        </div>
+      </div>
+    </section>
+    <div class="topic-rail" aria-label="Temas da aula"><div class="wrap"><span>CONTEXTO</span><i>✳</i><span>DOCUMENTOS</span><i>✳</i><span>CLAUDE</span><i>✳</i><span>CLAUDE CODE</span><i>✳</i><span>APLICAÇÃO REAL</span><i>✳</i><span>REVISÃO HUMANA</span></div></div>
+    <section class="section wrap" id="aula">
+      <div class="section-heading"><div><p class="eyebrow">O QUE VAMOS CONSTRUIR</p><h2>UMA AULA PARA SAIR<br />DO <span>“E SE?”</span> E FAZER.</h2></div><p>Traga uma tarefa do seu escritório.<br />Vamos conectar contexto, execução<br />e critério para avaliar o resultado.</p></div>
+      <div class="learning-grid">
+        <article class="learning-card"><div class="card-icon"><Icon name="chat" /></div><span class="card-label">PENSAR COM CONTEXTO</span><h3>Claude com<br />os seus documentos.</h3><p>Organize o pedido, dê contexto e transforme informação em uma entrega que você consegue conferir.</p><div class="card-bottom">Papel · Tarefa · Critérios <Icon name="spark" /></div></article>
+        <article class="learning-card"><div class="card-icon"><Icon name="code" /></div><span class="card-label">CONSTRUIR NA PRÁTICA</span><h3>Claude Code.<br />Da ideia ao arquivo.</h3><p>Acompanhe a construção de um teleprompter e de um manipulador de PDF com escopo bem definido.</p><div class="card-bottom">Instruir · Executar · Testar <Icon name="spark" /></div></article>
+        <article class="learning-card"><div class="card-icon"><Icon name="shield" /></div><span class="card-label">CONFERIR A ENTREGA</span><h3>A decisão continua<br />nas suas mãos.</h3><p>Entenda os limites, cuide das permissões e revise o resultado antes de levar qualquer entrega ao cliente.</p><div class="card-bottom">Dados · Permissões · Revisão <Icon name="spark" /></div></article>
+      </div>
+      <div class="watch-strip"><div><span class="watch-symbol"><Icon name="play" /></span><div><strong>Acompanhe a Quarta Rebelde</strong><p>25 de novembro · 9h às 11h · Horário de Brasília · YouTube</p></div></div><a class="button secondary" href={live} target="_blank" rel="noopener noreferrer">Abrir a aula no YouTube</a></div>
+    </section>
+    <section class="materials-section" id="materiais"><div class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">SEU KIT DE PRÁTICA · ACESSO LIVRE</p><h2>A AULA ACABA.<br /><span>O MATERIAL FICA.</span></h2></div><p>Abra o prompt, copie e experimente.<br />Use uma pasta vazia e dados fictícios<br />para acompanhar as demonstrações.</p></div>
+      <div class="material-toolbar"><span><Icon name="folder" /> Materiais desta edição</span><a href="/material/prompts-da-aula.txt" download><Icon name="download" /> Baixar os dois prompts</a></div>
+      <div class="prompt-grid">{resources.map((resource, index) => <article class="prompt-card"><div class="prompt-top"><div class="card-icon"><Icon name={resource.icon} /></div><span class="pill">CLAUDE CODE</span></div><h3>{resource.title}</h3><p>{resource.description}</p><div class="prompt-meta"><Icon name="code" /> Vite + React + TypeScript <span>PT-BR</span></div><details class="prompt-details"><summary>Ver prompt completo <Icon name="plus" /></summary><div class="prompt-body"><pre tabindex="0" id={`prompt-${index}`}>{prompts[index]}</pre><p>{resource.note} <a href={resource.source} target="_blank" rel="noopener noreferrer">Consultar a referência original</a>.</p></div></details><div class="prompt-actions"><button class="button primary copy-button" data-copy={`prompt-${index}`}><Icon name="copy" /><span>Copiar prompt</span></button><span class="material-type">.txt · pronto para usar</span></div></article>)}</div>
+      <article class="slides-card"><div class="slides-preview"><img src="/material/imagens/slide-01.webp" width="600" height="338" loading="lazy" alt="Mesa de trabalho iluminada em laranja, imagem da apresentação" /><div><span>QUARTA REBELDE</span><strong>CLAUDE E<br /><em>CLAUDE CODE</em><br />NA PRÁTICA</strong></div></div><div class="slides-copy"><span class="eyebrow">APRESENTAÇÃO DA AULA</span><h3>O caminho completo,<br />slide a slide.</h3><p>24 slides para revisitar os conceitos e acompanhar cada etapa da demonstração.</p><a class="button secondary" href="/material/slides.html" target="_blank" rel="noopener noreferrer"><Icon name="slides" /> Abrir apresentação</a><span class="slides-hint">Use as setas do teclado para navegar.</span></div><span class="slides-count">24 <small>SLIDES</small></span></article>
+      <div class="practice-note"><Icon name="shield" /><p><strong>Você decide. A IA executa. Você confere.</strong> Os prompts são adaptações didáticas. Leia antes de executar, use dados fictícios e confira cada resultado. Para acompanhar no Claude Code, tenha Node.js e npm instalados.</p></div>
+    </div></section>
+    <section class="community-section wrap section">
+      <div class="section-heading"><div><p class="eyebrow">CONTINUE COM A COMUNIDADE A FONTE</p><h2>UMA QUARTA É O COMEÇO.<br /><span>O PRÓXIMO PASSO É SEU.</span></h2></div><p>Um lugar para aprender, construir<br />e evoluir com quem também está<br />colocando IA para trabalhar.</p></div>
+      <div class="course-grid">{courses.map((course) => <article class="course-card"><img src={course.image} alt={`Capa da trilha ${course.title}`} width="560" height="315" loading="lazy" /><h3>{course.title}</h3></article>)}</div>
+      <div class="community-features"><div><Icon name="layers" /><span>Trilhas do fundamental<br />ao avançado</span></div><div><Icon name="play" /><span>Conteúdo novo<br />toda semana</span></div><div><Icon name="chat" /><span>Live exclusiva e<br />espaço para dúvidas</span></div><div><Icon name="users" /><span>Comunidade no Discord<br />e contato com o time</span></div></div>
+    </section>
+    <section class="offer-section" id="black-friday"><div class="wrap offer-grid"><div class="offer-copy"><span class="offer-kicker"><Icon name="spark" /> BLACK FRIDAY A FONTE · 2026</span><h2>MENOS TAREFA<br />NO REPETITIVO.<br /><span>MAIS VOCÊ<br />NO COMANDO.</span></h2><p>Continue o que começou nesta aula. Entre para a Comunidade A Fonte e construa ferramentas para a rotina do escritório, com método, prática e companhia.</p><div class="gift-note"><Icon name="gift" /><span><strong>Tem boas-vindas esperando por você.</strong>Kit enviado após os 7 dias de garantia.</span></div><a class="text-link" href="https://lp.afonte.ia.br/" target="_blank" rel="noopener noreferrer">Conhecer melhor a comunidade <Icon name="plus" /></a></div>
+      <div class="price-card"><div class="price-card-top"><span>SEU PRÓXIMO CAPÍTULO</span><span class="discount">25% OFF</span></div><h3>Comunidade A Fonte</h3><span class="access-label">12 MESES DE ACESSO</span><div class="pricing"><span class="old-price">De <s>R$ 3.600,00</s> por</span><div class="installment"><span>12×</span><strong>R$ 225<span>,00</span></strong></div><p>sem juros no cartão</p><p class="cash-price">ou <strong>R$ 2.700,00 à vista</strong></p></div><ul>{['Conteúdos e trilhas da plataforma','Novos conteúdos toda semana','Live exclusiva com os instrutores','Comunidade e tira-dúvidas','Kit de boas-vindas'].map(text => <li><Icon name="check" />{text}</li>)}</ul><a class="button primary checkout-button" href={checkout} target="_blank" rel="noopener noreferrer">Quero entrar com 25% OFF</a><p class="guarantee"><Icon name="shield" /> 7 dias de garantia · Pagamento seguro</p><div class="offer-deadline">Condição válida até <strong>30/11/2026, às 23h59</strong> (Brasília).</div></div>
+    </div></section>
+    <section class="faq-section wrap section"><div><p class="eyebrow">ANTES DO PRÓXIMO PASSO</p><h2>FICOU ALGUMA<br /><span>PERGUNTA?</span></h2></div><div class="faq-list">{faqs.map(([question,answer]) => <details><summary>{question}<Icon name="plus" /></summary><p>{answer}</p></details>)}</div></section>
+  </main>
+  <footer class="wrap footer"><a class="brand" href="https://lp.afonte.ia.br/"><img src="/images/logo-afonte.webp" alt="" width="44" height="44" /><span>A FONTE<span class="brand-caption">PESSOAS + IA + RESULTADOS</span></span></a><p>Um consolida. Todos aprendem.</p><span>© 2026 A Fonte · CEATH</span><a href="#conteudo" class="back-top" aria-label="Voltar ao início"><Icon name="up" /></a></footer>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog class="copy-fallback"><form method="dialog"><div><h2>Copie seu prompt</h2><button class="dialog-close" aria-label="Fechar">×</button></div><p>Selecione o texto abaixo e use Ctrl+C ou a opção Copiar do seu dispositivo.</p><textarea readonly aria-label="Prompt completo para copiar"></textarea><button class="button secondary">Concluir</button></form></dialog>
+  <script>
+    const toast = document.querySelector<HTMLElement>('.toast');
+    let toastTimer: ReturnType<typeof setTimeout>;
+    function notify(message: string) { if (!toast) return; toast.textContent = message; toast.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500); }
+    document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const text = document.getElementById(button.dataset.copy || '')?.textContent;
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const label = button.querySelector('span');
+          if (label) label.textContent = 'Prompt copiado!';
+          notify('Prompt copiado. Agora é só colar no Claude Code.');
+          setTimeout(() => { if (label) label.textContent = 'Copiar prompt'; }, 2500);
+        } catch {
+          const dialog = document.querySelector<HTMLDialogElement>('.copy-fallback');
+          const textarea = dialog?.querySelector('textarea');
+          if (dialog && textarea) { textarea.value = text; dialog.showModal(); textarea.focus(); textarea.select(); }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
